@@ -1,0 +1,20 @@
+# 参考资料
+# http://www.lxzhu.net/blogcn/archives/git-gitignore-file
+#
+
+# 关闭以下跟踪
+/pkg
+/bin
+/log
+/download
+/src/*/*
+
+# 跟踪非*.go的文件
+!/src/*/*.go
+!/src/*/.gitignore
+
+# 跟踪以下所有文件
+!/src/*/public
+!/src/*/routes
+!/src/*/model
+!/src/*/test
