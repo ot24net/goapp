@@ -4,11 +4,11 @@
 一，项目构建
 二，项目结构
 三，GOPATH管理
-四，变更记录
+四，发布与部署项目
 
 说明
 ==================
-当前仅在debian下的测试
+当前仅在debian下的完成了测试
 
 
 内容
@@ -18,8 +18,7 @@
 1, 新建一个项目：
     mkdir ~/ws
     cd ~/ws/
-    git config --global http.sslverify false # 只需配一次
-    git clone http://git.ot24.net/go/app.git test
+    git clone https://github.com/ot24net/goapp.git test
     cd test
     ./init.bash
     source env.bash
@@ -54,14 +53,8 @@ $GOLIBS -- 第一级GOPATH的路径变量，作为公共库存放第三方基础
 $PJROOT -- 当前项目的所在位置，与$GOLIBS同一级。
     .gitignore -- git的忽略管理文件，根据实际项目来看，许多新人会误提交，因此采用守护模式进行工作。
     env.bash -- 项目环境切换，开发时，调souce env.bash可进行项目环境切换。
-    doc -- 文档文件目录。
-        db -- 数据库脚本文档文件
-    etc -- 静态配置文件目录,由git.ot24.net/go/engine/conf/etc进行管理调用,配置由使用者进行配置。
-    res -- 动态配置文件目录，由git.ot24.net/go/engine/conf/res进行管理调用,常见用于热配置加载。
-    i18n -- 多语言文件目录，由git.ot24.net/go/engine/conf/i18n进行管理调用，常用于对外多语言显示。
     log -- 日志存放目录存放发布时控制台的日志。
     publish -- 非源码部署的项目结构
-    download -- 对外下载目录
     src -- 项目源码。
         -- 包名
             -- (go文件，main文件放这一层) 
@@ -142,36 +135,4 @@ sup tailf -- 查看当前目录应用的日志
 
 4, 进程管理
 进入项目，执行source env.bash，使用sup命令进行管理;或者使用supervisorctl命令进行管理进程
-
-
-四，变更记录
-
-2017-06-14, sy.zhou
-1, 增加非源码部署的发布指令(publish)
-2, 变更说明文档
-
-2017-05-16, sy.zhou
-1，变更安装的命令
-
-2016-12-30, sy.zhou
-1，调整文档描述
-
-2016-11-24, sy.zhou
-1, 重建项目目录, 以便可以从原系统中分离出子系统
-
-2016-07-13, sy.zhou
-1，调整template的env.bash脚本位置
-2，调整GOBASE环境变更为GOLIBS，以便进一步在IDE中使用
-
-2015-10-11, sy.zhou
-1, 调整etc、i18n、res目录为固定的，不再由环境变量指定。
-2, 调整OTROOT为通用的命名。
-3, 调整sup的配置文件命名为三级，以便同个项目中同名程序存在。
-
-2015-10-01, sy.zhou
-1,将build.bash功能并入sup命令,删除build.bash，统一使用sup命令。
-2,增加单个目录编译的能力。
-3,继承重写supervisorctl status功能，调用sup help时模仿pm2的界面美化了输出。
-4,继承重写supervisorctl help功能,调用sup help时增加对build与clean的说明。
-5,调整了部分环境变量为可导出的。
 
