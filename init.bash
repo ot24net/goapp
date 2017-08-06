@@ -19,8 +19,8 @@ export github=$GOLIBS/src/github.com/ # 快速跳转github.com库使用
 
 # 设定全编译或打包时的目录,用于sup [command] all 时的寻找路径
 # 例如：sup build all, sup install all, sup restart all等
-# 默认为关闭，请配置实际项目中的路径
-# export BUILDPATH="$PJROOT/src/app $PJROOT/src/wap"
+# 请配置实际项目中的路径
+export BUILDPATH="$PJROOT/src/app $PJROOT/src/web"
 # -------------------------------------------------
 
 # 设定git库地址转换, 以便解决部分包的库存在https的相关问题
