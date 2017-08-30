@@ -37,7 +37,7 @@ mkdir -p $PJROOT/src
 mkdir -p $PJROOT/log
 
 # bin
-export PATH=$GOLIBS/src/gopkg.in/ot24net/sup.v1:$GOBIN:$GOROOT/bin:/bin:/sbin:/usr/sbin:/usr/bin:/usr/local/bin
+export PATH=$GOLIBS/src/gopkg.in/ot24net/sup.v1:$GOBIN:$GOROOT/bin:/bin:/sbin:/usr/sbin:/usr/bin:/usr/local/bin:$PATH
 
 # 下载默认依赖库
 if [ "$sup_mode" = "src" ]; then
