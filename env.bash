@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 # 需要导出的程序环境变量
 export PJ_NAME="goapp"
 export PJ_ROOT=`pwd`
@@ -22,6 +21,7 @@ export GOLIBS="$(dirname "$PJ_ROOT")/golibs"
 export GOPATH=$GOLIBS:$PJ_ROOT
 export GOBIN=$PJ_ROOT/bin
 export PATH=$GOBIN:$GOROOT/bin:/bin:/sbin:/usr/sbin:/usr/bin:/usr/local/bin:$PATH
+# -------------------------------------------------
 
 # 设定SUP发布环境
 # 以下是部署时的supervisor默认配置数据，若未配置时，会使用以下默认数据
@@ -34,6 +34,7 @@ export SUP_LOG_SIZE="10MB"
 export SUP_LOG_BAK="10"
 # 配置supervisor配置中的environment环境变量
 export SUP_APP_ENV="PJ_ROOT=\\\"$PJ_ROOT\\\",GIN_MODE=\\\"release\\\",LD_LIBRARY_PATH=\\\"$LD_LIBRARY_PATH\\\""
+# -------------------------------------------------
 
 # 构建项目目录
 mkdir -p $PJ_ROOT/src
