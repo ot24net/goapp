@@ -1,15 +1,9 @@
 #!/bin/bash
 
-# 依赖的私有变量
-pwddir=`pwd`
-sup_mode="src" # sup内部使用的发布模式
-sup_path="gopkg.in/ot24net/sup.v2"
-# -------------------------------------------------
-
 
 # 需要导出的程序环境变量
 export PJ_NAME="goapp"
-export PJ_ROOT=$pwddir
+export PJ_ROOT=`pwd`
 # -------------------------------------------------
 
 # 设定全编译或打包时的目录,用于sup [command] all 时的寻找路径
@@ -27,7 +21,7 @@ fi
 export GOLIBS="$(dirname "$PJ_ROOT")/golibs"
 export GOPATH=$GOLIBS:$PJ_ROOT
 export GOBIN=$PJ_ROOT/bin
-export PATH=$GOLIBS/src/$sup_path:$GOBIN:$GOROOT/bin:/bin:/sbin:/usr/sbin:/usr/bin:/usr/local/bin:$PATH
+export PATH=$GOBIN:$GOROOT/bin:/bin:/sbin:/usr/sbin:/usr/bin:/usr/local/bin:$PATH
 
 # 设定SUP发布环境
 # 以下是部署时的supervisor默认配置数据，若未配置时，会使用以下默认数据
@@ -44,10 +38,15 @@ export SUP_APP_ENV="PJ_ROOT=\\\"$PJ_ROOT\\\",GIN_MODE=\\\"release\\\",LD_LIBRARY
 # 构建项目目录
 mkdir -p $PJ_ROOT/src
 mkdir -p $PJ_ROOT/log
+mkdir -p $PJ_ROOT/etc
+mkdir -p $PJ_ROOT/res
 
 # 下载默认依赖库
-if [ "$sup_mode" = "src" ]; then
-    go get -v -insecure $sup_path
+if [ ! -f $PJ_ROOT/bin/sup ]; then
+	mkdir -p $PJ_ROOT/bin
+	sup_path="gopkg.in/ot24net/sup.v2"
+	go get -u -v -insecure $sup_path
+	cp -rf $GOLIBS/src/$sup_path/sup $PJ_ROOT/bin
 fi
 
 # 设定git库地址转换, 以便解决私有库中https证书不可信的问题

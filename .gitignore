@@ -7,6 +7,7 @@
 /bin
 /log
 /download
+/publish
 /src/*/*
 
 # 跟踪非*.go的文件
