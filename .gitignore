@@ -5,6 +5,7 @@
 # 关闭以下跟踪
 /pkg
 /bin
+/vendor
 /log
 /download
 /publish

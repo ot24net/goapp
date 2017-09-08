@@ -11,7 +11,7 @@ goroot="/usr/local/go"
 if [ -d "$goroot" ]; then
     export GOROOT="$goroot"
 fi
-export GOLIBS="$(dirname "$PJ_ROOT")/golibs"
+export GOLIBS=$PJ_ROOT/vendor
 export GOPATH=$GOLIBS:$PJ_ROOT
 export GOBIN=$PJ_ROOT/bin
 export PATH=$GOBIN:$GOROOT/bin:/bin:/sbin:/usr/sbin:/usr/bin:/usr/local/bin:$PATH
@@ -50,6 +50,7 @@ fi
 
 # 设定git库地址转换, 以便解决私有库中https证书不可信的问题
 # git config --global url."git@git.ot24.net:".insteadOf "https://git.ot24.net"
+# export github=$GOLIBS/src/github.com
 
 echo "Env have changed to \"$PJ_NAME\""
 echo "Using \"sup help\" to manage project"
