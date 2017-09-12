@@ -11,6 +11,7 @@ goroot="/usr/local/go"
 if [ -d "$goroot" ]; then
     export GOROOT="$goroot"
 fi
+# export GOLIBS="$(dirname "$PJ_ROOT")/golibs" # 可作为公共库时使用
 export GOLIBS=$PJ_ROOT/golibs
 export GOPATH=$GOLIBS:$PJ_ROOT
 export GOBIN=$PJ_ROOT/bin

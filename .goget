@@ -1,0 +1,17 @@
+#
+# TODO: make goget configuration
+# library version default by go1 tag
+# others work like gopkg.in version control
+#
+# this is configuration depend on $PJ_ROOT enviorement for looking up the root of project.
+#
+
+
+# package				source
+
+git.ot24.net/go/engine/error:	https://git.ot24.net/go/engine.git
+git.ot24.net/go/engine/log:	https://git.ot24.net/go/engine.git
+github.com/ot24net/sup.v2:	https://github.com/ot24net/sup.git
+golang.org/x/sys:		https://github.com/golang/sys
+gopkg.in/ot24net/sup.v2:	https://github.com/ot24net/sup.git
+
