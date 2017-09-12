@@ -11,7 +11,7 @@ goroot="/usr/local/go"
 if [ -d "$goroot" ]; then
     export GOROOT="$goroot"
 fi
-export GOLIBS=$PJ_ROOT/vendor
+export GOLIBS=$PJ_ROOT/golibs
 export GOPATH=$GOLIBS:$PJ_ROOT
 export GOBIN=$PJ_ROOT/bin
 export PATH=$GOBIN:$GOROOT/bin:/bin:/sbin:/usr/sbin:/usr/bin:/usr/local/bin:$PATH
