@@ -6,16 +6,21 @@ export PJ_ROOT=`pwd`
 # -------------------------------------------------
 
 # 设定GO编译环境
-# 更改路径可更改编译器的版本号, 如果未指定，使用系统默认的配置
-goroot="/usr/local/go"
-if [ -d "$goroot" ]; then
-    export GOROOT="$goroot"
-fi
 # export GOLIBS="$(dirname "$PJ_ROOT")/golibs" # 可作为公共库时使用
 export GOLIBS=$PJ_ROOT/golibs
 export GOPATH=$GOLIBS:$PJ_ROOT
 export GOBIN=$PJ_ROOT/bin
-export PATH=$GOBIN:$GOROOT/bin:/bin:/sbin:/usr/sbin:/usr/bin:/usr/local/bin:$PATH
+
+# 更改路径可更改编译器的版本号, 如果未指定，使用系统默认的配置
+go_root="/usr/local/go"
+if [ -d "$go_root" ]; then
+    export GOROOT="$go_root"
+fi
+
+bin_path=$GOBIN:$GOROOT/bin
+if [[ ! $PATH =~ $bin_path ]]; then
+	export PATH=$bin_path:$PATH
+fi
 # -------------------------------------------------
 
 # 设定SUP发布环境
