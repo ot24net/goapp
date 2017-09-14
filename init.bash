@@ -54,8 +54,8 @@ mkdir -p $PJ_ROOT/res
 # 下载默认依赖库
 if [ ! -f $PJ_ROOT/bin/sup ]; then
 	mkdir -p $PJ_ROOT/bin
-	sup_path="gopkg.in/ot24net/sup.v2"
-	go get -u -v -insecure $sup_path
+	sup_path="gopkg.in/ot24net/sup.v3"
+	go get -u -v -insecure $sup_path/goget
 	cp -rf $GOLIBS/src/$sup_path/sup $PJ_ROOT/bin
 fi
 

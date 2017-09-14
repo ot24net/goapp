@@ -6,6 +6,8 @@ import (
 
 	"web/model/log"
 	_ "web/routes"
+
+	"golang.org/x/net/context"
 )
 
 func init() {
@@ -29,4 +31,7 @@ func main() {
 	addr := ":8080"
 	log.Println("Listen: " + addr)
 	log.Fatal(http.ListenAndServe(addr, filter))
+
+	// Test goget package for $PJ_ROOT/.goget
+	log.Println(context.TODO)
 }
