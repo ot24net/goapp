@@ -49,10 +49,10 @@
 二，项目结构
 
 $GOROOT -- 编译器放在/usr/local当中，多个版本时，以go1.4，go1.5等进行放置，由项目的env.bash进行切换，此sup项目依赖于go1.9及以上版本。
-$GOLIBS -- 第一级GOPATH的路径变量，作为公共库存放第三方基础库源码,通过go get来管理。
+$GOLIBS -- 第一级GOPATH的路径变量，作为公共库存放第三方基础库源码,通过goget来管理。
 $PJROOT -- 当前项目的所在位置，与$GOLIBS同一级。
     .gitignore -- git的忽略管理文件，根据实际项目来看，许多新人会误提交，因此采用守护模式进行工作。
-    env.bash -- 项目环境切换，开发时，调souce env.bash可进行项目环境切换。
+    env.bash -- 项目环境变量配置，开发时，调souce env.bash可进行项目环境切换。
     log -- 日志存放目录存放发布时控制台的日志。
     publish -- 非源码部署的项目结构
     src -- 项目源码。
@@ -75,6 +75,8 @@ debian: sudo aptitude install supervisor
     
     cd $PJROOT
     source env.bash
+    # 检查依赖
+    sup get all
     # 编译
     sup build all
     # 部署应用
@@ -86,6 +88,7 @@ debian: sudo aptitude install supervisor
 
 3, 非源码部署的方式
     # 打包版本
+    # 若未安装依赖，请先sup get all
     sup publish all
     cd $PJROOT/publish
     tar -czf $PJNAME.tar.gz $PJNAME
@@ -115,7 +118,7 @@ debian: sudo aptitude install supervisor
 
 
 其他详见sup help
-以下是常用的命令(作用域为项目的相关文件):
+以下是常用的命令(详情的参考https://github.com/ot24net/sup):
 sup status --状态查看
 sup build -- 单个编译(检查依赖并go build)
 sup build all -- 全部编译(检查依赖并go build)
@@ -133,6 +136,6 @@ sup restart -- 单个进程重启
 sup restart all -- 所有进程重启
 sup tailf -- 查看当前目录应用的日志
 
-4, 进程管理
+4, 发布进程管理
 进入项目，执行source env.bash，使用sup命令进行管理;或者使用supervisorctl命令进行管理进程
 
