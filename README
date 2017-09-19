@@ -6,21 +6,17 @@
 三，GOPATH管理
 四，发布与部署项目
 
-说明
-==================
-当前仅在debian下的完成了测试
-
 
 内容
 ==================
 一，项目构建(复制以下单行指令即可执行)
 
 1, 新建一个项目：
-    mkdir ~/ws
+    mkdir -p ~/ws
     cd ~/ws/
     git clone https://github.com/ot24net/goapp.git test
     cd test
-    ./init.bash
+    ./init.bash # 输入test，输Y新建一个项目，输n保留模板原文件
     source env.bash
     cd src
     mkdir app
@@ -40,19 +36,22 @@
     # 完成
 
 2, 已有的sup项目
-    git clone xxx
-    cd xxx
+    mkdir -p ~/ws
+    cd ~/ws/
+    git clone https://github.com/ot24net/goapp.git
+    cd goapp
     source env.bash
-    sup build all # 编译所有程序并自动下载依赖
-
+    sup get all # 下载依赖
+    sup build all # 编译项目
     
 二，项目结构
 
 $GOROOT -- 编译器放在/usr/local当中，多个版本时，以go1.4，go1.5等进行放置，由项目的env.bash进行切换，此sup项目依赖于go1.9及以上版本。
-$GOLIBS -- 第一级GOPATH的路径变量，作为公共库存放第三方基础库源码,通过goget来管理。
 $PJROOT -- 当前项目的所在位置，与$GOLIBS同一级。
     .gitignore -- git的忽略管理文件，根据实际项目来看，许多新人会误提交，因此采用守护模式进行工作。
+    .goget -- goget配置文件
     env.bash -- 项目环境变量配置，开发时，调souce env.bash可进行项目环境切换。
+    $GOLIBS -- 第一级GOPATH的路径变量，作为公共库存放第三方基础库源码,通过goget来管理。
     log -- 日志存放目录存放发布时控制台的日志。
     publish -- 非源码部署的项目结构
     src -- 项目源码。
@@ -118,24 +117,8 @@ debian: sudo aptitude install supervisor
 
 
 其他详见sup help
-以下是常用的命令(详情的参考https://github.com/ot24net/sup):
-sup status --状态查看
-sup build -- 单个编译(检查依赖并go build)
-sup build all -- 全部编译(检查依赖并go build)
-sup install -- 单个部署安装, 安装结束后运行起程序
-sup install all -- 全部部署安装, 安装运行起程序
-sup clean -- 删除单个部署, 停止程序并删除发布的配置文件
-sup clean all -- 删除所有部署,停止程序并删除发布的配置文件
-sup publish -- 发布为非源码部署
-sup publish all -- 依次发布所有编译目录下程序至非源码部署文件夹
-sup start -- 单个进程启动
-sup start all -- 所有进程启动
-sup stop -- 单个进程停止
-sup stop all -- 所有进程停止
-sup restart -- 单个进程重启
-sup restart all -- 所有进程重启
-sup tailf -- 查看当前目录应用的日志
+详情的参考https://github.com/ot24net/sup
 
 4, 发布进程管理
-进入项目，执行source env.bash，使用sup命令进行管理;或者使用supervisorctl命令进行管理进程
+进入项目，执行source env.bash，使用sup命令进行管理；或者使用supervisorctl命令进行管理进程
 
