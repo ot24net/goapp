@@ -47,11 +47,11 @@
 二，项目结构
 
 $GOROOT -- 编译器放在/usr/local当中，多个版本时，以go1.4，go1.5等进行放置，由项目的env.bash进行切换，此sup项目依赖于go1.9及以上版本。
+$GOLIBS -- 第一级GOPATH的路径变量，作为公共库存放第三方基础库源码,通过goget来管理。
 $PJROOT -- 当前项目的所在位置，与$GOLIBS同一级。
     .gitignore -- git的忽略管理文件，根据实际项目来看，许多新人会误提交，因此采用守护模式进行工作。
     .goget -- goget配置文件
     env.bash -- 项目环境变量配置，开发时，调souce env.bash可进行项目环境切换。
-    $GOLIBS -- 第一级GOPATH的路径变量，作为公共库存放第三方基础库源码,通过goget来管理。
     log -- 日志存放目录存放发布时控制台的日志。
     publish -- 非源码部署的项目结构
     src -- 项目源码。

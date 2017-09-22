@@ -11,8 +11,8 @@ export PJ_ROOT=`pwd`
 # -------------------------------------------------
 
 # 设定GO编译环境
-# export GOLIBS="$(dirname "$PJ_ROOT")/golibs" # 可作为公共库时使用
-export GOLIBS=$PJ_ROOT/golibs
+export GOLIBS="$(dirname "$PJ_ROOT")/golibs" # 可作为公共库时使用
+# export GOLIBS=$PJ_ROOT/golibs
 export GOPATH=$GOLIBS:$PJ_ROOT
 export GOBIN=$PJ_ROOT/bin
 
