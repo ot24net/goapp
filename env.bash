@@ -1,10 +1,14 @@
 #!/bin/bash
 
 # 需要导出的程序环境变量
-export PJ_NAME="goapp"
 export PJ_ROOT=`pwd`
-# -------------------------------------------------
+export PJ_NAME="goapp"
+# 设定sup [command] all 的目录
+export SUP_BUILD_PATH="$PJ_ROOT/src/app $PJ_ROOT/src/web"
 
+
+# 以下配置可使用默认配置即可 
+# --------------------START-------------------
 # 设定GO编译环境
 export GOLIBS="$(dirname "$PJ_ROOT")/golibs" # 可作为公共库时使用
 # export GOLIBS=$PJ_ROOT/golibs
@@ -34,10 +38,6 @@ export SUP_LOG_SIZE="10MB"
 export SUP_LOG_BAK="10"
 # 配置supervisor配置中的environment环境变量
 export SUP_APP_ENV="PJ_ROOT=\\\"$PJ_ROOT\\\",GIN_MODE=\\\"release\\\",LD_LIBRARY_PATH=\\\"$LD_LIBRARY_PATH\\\""
-# 设定全编译或打包时的目录,用于sup [command] all 时的寻找路径
-# 例如：sup build all, sup install all, sup restart all等
-# 请配置实际项目中的路径
-export SUP_BUILD_PATH="$PJ_ROOT/src/app $PJ_ROOT/src/web"
 # -------------------------------------------------
 
 # 构建项目目录
@@ -60,4 +60,5 @@ fi
 
 echo "Env have changed to \"$PJ_NAME\""
 echo "Using \"sup help\" to manage project"
+# --------------------END--------------------
 
