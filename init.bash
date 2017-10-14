@@ -51,8 +51,8 @@ mkdir -p $PJ_ROOT/log
 mkdir -p $PJ_ROOT/etc
 mkdir -p $PJ_ROOT/res
 
-# 下载默认依赖库
-if [ ! -f $PJ_ROOT/bin/goget ]; then
+# 下载自定义goget管理工具
+if [ ! -f $PJ_ROOT/bin/sup ]; then
 	mkdir -p $PJ_ROOT/bin
 	sup_path="gopkg.in/ot24net/sup.v3"
 	go get -u -v $sup_path/goget
