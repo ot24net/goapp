@@ -21,6 +21,8 @@
     cd src
     mkdir app
     cd app
+
+    # 复制共6行进行执行构建main.go
     echo "package main
     import \"fmt\"
     func main(){
@@ -30,7 +32,7 @@
 
     # 开发模式
     go fmt -w .
-    go build #(若有翻封墙依赖，使用sup build)
+    go build #(若有翻封墙依赖，使用sup get)
     ./app
 
     # 完成
@@ -69,6 +71,8 @@ $GOPATH=$GOLIBS:$PJROOT -- $GOLIBS在第一位，以便go get安装第三方库;
 1, 在部署的服务器上安装supervior工具
 debian: sudo aptitude install supervisor
 
+* 需要时可编辑env.bash的SUP_ETC_DIR目录位置, 该位置用于存放supervisord的配置文件
+
 2, 源码部署
     # 在需要部署的服务器上下载源码库，并执行以下指令
     
@@ -79,10 +83,9 @@ debian: sudo aptitude install supervisor
     # 编译
     sup build all
     # 部署应用
-    # 项目发布管理依赖于supervisord管理，请先安装
-    # debian下：sudo aptitude install supervisord
+    # 将supervisor的配置文件安装至$SUP_ETC_DIR目录并部署
     sup install all
-    # 删除部署
+    # 删除supervisor的配置文件安装至$SUP_ETC_DIR目录及部署
     sup clean all
 
 3, 非源码部署的方式
@@ -96,10 +99,9 @@ debian: sudo aptitude install supervisor
     cd $PJROOT
     source env.bash
     # 部署应用
-    # 项目发布管理依赖于supervisord管理，请先安装
-    # debian下：sudo aptitude install supervisord
+    # 将supervisor的配置文件安装至$SUP_ETC_DIR目录并部署
     sup install all
-    # 删除部署
+    # 删除supervisor的配置文件安装至$SUP_ETC_DIR目录及部署
     sup clean all
 
 5, 部署上的调试模式
@@ -107,18 +109,18 @@ debian: sudo aptitude install supervisor
     sup stop # 停止supervisor管理
     ./app # 以开发的方式启动，日志在控制台输出
 
-6, 部署时的控制台日志查看(最多存储10M)
-    sup tail [$cfg_name stdout] # 查看输出状态0的输出，等价于 supervisorctrl tail $cfg_name stdout
-    sup tail $cfg_name stderr # 查看输出状态非0的输出，等价于 supervisorctrl tail $cfg_name stderr
-    sup tailf [$cfg_name stdout] # 查看输出状态0的输出，等价于 supervisorctrl tail -f $cfg_name stdout
-    sup tailf $cfg_name stderr # 查看输出状态非0的输出，等价于 supervisorctrl tail -f $cfg_name stderr
+6, 部署时的控制台日志查看
+    sup tail [$cfg_name stdout] # 查看输出状态0的输出，等价于 sudo supervisorctrl tail $cfg_name stdout
+    sup tail $cfg_name stderr # 查看输出状态非0的输出，等价于 sudo supervisorctrl tail $cfg_name stderr
+    sup tailf [$cfg_name stdout] # 查看输出状态0的输出，等价于 sudo supervisorctrl tail -f $cfg_name stdout
+    sup tailf $cfg_name stderr # 查看输出状态非0的输出，等价于 sudo supervisorctrl tail -f $cfg_name stderr
 
-    # 或者进入$PJROOT/log/查看相关日志文件
+    # 或者进入$PJROOT/log/ 用系统的tail命令查看相关日志文件
 
 
 其他详见sup help
-详情的参考https://github.com/ot24net/sup
+详情参考https://github.com/ot24net/sup
 
-4, 发布进程管理
-进入项目，执行source env.bash，使用sup命令进行管理；或者使用supervisorctl命令进行管理进程
+4, 管理发布进程
+进入项目根目录，执行source env.bash，使用sup命令进行管理；或者使用supervisorctl命令进行管理进程
 

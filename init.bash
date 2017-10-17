@@ -79,6 +79,7 @@ case $ANS in
     Y)
         rm init.bash
         rm -rf .git
+	rm -rf src
         exit 0
         ;;
 esac
