@@ -3,8 +3,6 @@
 # 需要导出的程序环境变量
 export PJ_ROOT=`pwd`
 export PJ_NAME="goapp"
-# 设定sup [command] all 的目录
-export SUP_BUILD_PATH="$PJ_ROOT/src/app $PJ_ROOT/src/web"
 
 
 # 以下配置可使用默认配置即可 
@@ -37,13 +35,19 @@ export SUP_LOG_SIZE="10MB"
 export SUP_LOG_BAK="10"
 # 配置supervisor配置中的environment环境变量
 export SUP_APP_ENV="PJ_ROOT=\\\"$PJ_ROOT\\\",GIN_MODE=\\\"release\\\",LD_LIBRARY_PATH=\\\"$LD_LIBRARY_PATH\\\""
+# 设定sup [command] all 的目录
+export SUP_BUILD_PATH="$PJ_ROOT/src/app $PJ_ROOT/src/web"
 # -------------------------------------------------
+
+# 设定publish指令打包时需要包含的文件夹
+# 默认会打包：$PJ_ROOT/bin $PJ_ROOT/src/app/app等二进制程序
+export PUB_ROOT_RES="" # 根目录下的文件夹列表，如"etc res"等
+export PUB_APP_RES="public" # app下的文件夹列表，如"etc public"等
+
 
 # 构建项目目录
 mkdir -p $PJ_ROOT/src
 mkdir -p $PJ_ROOT/log
-mkdir -p $PJ_ROOT/etc
-mkdir -p $PJ_ROOT/res
 
 # 下载自定义goget管理工具
 if [ ! -f $PJ_ROOT/bin/sup ]; then
