@@ -74,7 +74,7 @@ echo "Using \"sup help\" to manage project"
 
 echo '#' "Init Done"
 echo '#'
-echo '#' "You should edit env.bash when used, some command need specal environment."
+echo '#' "You should edit env.bash when used, some command need special environment."
 echo '#' "'SUP_BUILD_PATH' environment for 'sup build all' in env.bash "
 echo '#' "'SUP_APP_ENV' environment for 'sup install' in env.bash "
 echo '#' "'PUB_ROOT_RES' environment for 'sup publish' in env.bash "
