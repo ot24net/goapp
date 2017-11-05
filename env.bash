@@ -51,9 +51,9 @@ mkdir -p $PJ_ROOT/log
 
 # 下载自定义goget管理工具
 if [ ! -f $PJ_ROOT/bin/sup ]; then
-	mkdir -p $PJ_ROOT/bin
 	sup_path="gopkg.in/ot24net/sup.v3"
 	go get -u -v $sup_path/goget
+    # TODO: code sup by golang
 	cp -rf $GOLIBS/src/$sup_path/sup $PJ_ROOT/bin
 fi
 
