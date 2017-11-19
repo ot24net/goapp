@@ -61,7 +61,7 @@ fi
 # 设定git库地址转换, 以便解决私有库中https证书不可信的问题
 # git config --global url."git@git.ot24.net:".insteadOf "https://git.ot24.net"
 # 用于快速跳转文件变量
-# export github=$GOLIBS/src/github.com
+export github=$GOLIBS/src/github.com
 
 echo "Env have changed to \"$PJ_NAME\""
 echo "Using \"sup help\" to manage project"
